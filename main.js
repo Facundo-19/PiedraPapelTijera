@@ -6,7 +6,7 @@ const tijeraButton = document.getElementById('tijera')
 let resultTextbox = document.getElementById('result')
 let computerChoiceBox = document.getElementById('computerChoice')
 
-// Randmonly returns Piedra, Papel o Tijera
+// Randmonly returns piedra, papel o tijera
 const getComputerChoice = () => {
     computerChoice = Math.floor(Math.random() * 3)
     switch(computerChoice) {
@@ -22,23 +22,35 @@ const getComputerChoice = () => {
     }
 }
 
-
-// Takes both inputs and returns the winner
+// Take's both choices and returns the winner's message
 const checkWinner = (playerChoice, computerChoice) => {
     if (playerChoice == computerChoice) {
-        return "Empate"
+        return "Empate :("
     } else if ((playerChoice == 'piedra' && computerChoice == 'tijera') ||
                (playerChoice == 'papel' && computerChoice == 'piedra') ||
                (playerChoice == 'tijera' && computerChoice == 'papel')) {
-        return 'Gana Player'
+        return 'Gano Player!'
     } else {
-        return 'Gana Computer'
+        return 'Gano Compu!'
     }
 }
 
-// When PPT button pressed
+// When PPT button pressed -> Assign player choice to it's variable ->
+// Show the winner and computer's choice.
 piedraButton.addEventListener('click', function() {
     playerChoice = 'piedra'
+    resultTextbox.textContent = checkWinner(playerChoice, getComputerChoice())
+    computerChoiceBox.textContent = computerChoice
+})
+
+papelButton.addEventListener('click', function() {
+    playerChoice = 'papel'
+    resultTextbox.textContent = checkWinner(playerChoice, getComputerChoice())
+    computerChoiceBox.textContent = computerChoice
+})
+
+tijeraButton.addEventListener('click', function() {
+    playerChoice = 'tijera'
     resultTextbox.textContent = checkWinner(playerChoice, getComputerChoice())
     computerChoiceBox.textContent = computerChoice
 })
